@@ -50,11 +50,15 @@ const submitContact = asyncHandler(async (req, res) => {
 
 const getContactMessages = asyncHandler(async (req, res) => {
   if (mongoose.connection.readyState === 1) {
-    const messages = await Contact.find().sort({ createdAt: -1 });
-    return res.status(200).json({
-      success: true,
-      data: messages,
-    });
+    try {
+      const messages = await Contact.find().sort({ createdAt: -1 });
+      return res.status(200).json({
+        success: true,
+        data: messages,
+      });
+    } catch (error) {
+      console.error("MongoDB contact lookup failed, using memory storage:", error.message || error);
+    }
   }
 
   const messages = listContactMessages();

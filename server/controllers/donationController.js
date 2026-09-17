@@ -44,8 +44,12 @@ const submitDonation = asyncHandler(async (req, res) => {
 
 const getDonationRecords = asyncHandler(async (req, res) => {
   if (mongoose.connection.readyState === 1) {
-    const donations = await Donation.find().sort({ createdAt: -1 });
-    return res.status(200).json({ success: true, data: donations });
+    try {
+      const donations = await Donation.find().sort({ createdAt: -1 });
+      return res.status(200).json({ success: true, data: donations });
+    } catch (error) {
+      console.error("MongoDB donation lookup failed, using memory storage:", error.message || error);
+    }
   }
 
   const donations = listDonationRecords();

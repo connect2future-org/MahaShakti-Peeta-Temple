@@ -147,17 +147,17 @@ export default function AdminDashboard() {
       adminService.getDonationRecords(),
     ]);
 
-    if (galleryRes.status === "fulfilled") setGallery(galleryRes.value?.data || []);
-    if (videoRes.status === "fulfilled") setVideos(videoRes.value?.data || []);
-    if (eventRes.status === "fulfilled") setEvents(eventRes.value?.data || []);
+    if (galleryRes.status === "fulfilled") setGallery(Array.isArray(galleryRes.value?.data) ? galleryRes.value.data : []);
+    if (videoRes.status === "fulfilled") setVideos(Array.isArray(videoRes.value?.data) ? videoRes.value.data : []);
+    if (eventRes.status === "fulfilled") setEvents(Array.isArray(eventRes.value?.data) ? eventRes.value.data : []);
     if (contactRes.status === "fulfilled") {
-      setContactMessages(contactRes.value?.data || []);
+      setContactMessages(Array.isArray(contactRes.value?.data) ? contactRes.value.data : []);
     } else {
       console.error(contactRes.reason);
       setContactError("Unable to refresh contact messages.");
     }
     if (donationRes.status === "fulfilled") {
-      setDonationRecords(donationRes.value?.data || []);
+      setDonationRecords(Array.isArray(donationRes.value?.data) ? donationRes.value.data : []);
     } else {
       console.error(donationRes.reason);
     }

@@ -15,7 +15,7 @@ export const contentService = {
     const gallery = response.data?.data ?? response.data ?? [];
     const normalizedGallery = Array.isArray(gallery)
       ? gallery.map((item) => ({ ...item, imageUrl: normalizeMediaUrl(item.imageUrl) }))
-      : gallery;
+      : [];
 
     return { ...response.data, data: normalizedGallery };
   },
@@ -45,7 +45,7 @@ export const contentService = {
     const videos = response.data?.data ?? response.data ?? [];
     const normalizedVideos = Array.isArray(videos)
       ? videos.map((item) => ({ ...item, videoUrl: normalizeMediaUrl(item.videoUrl) }))
-      : videos;
+      : [];
 
     return { ...response.data, data: normalizedVideos };
   },
@@ -76,7 +76,7 @@ async deleteVideo(id: string) {
     const events = response.data?.data ?? response.data ?? [];
     const normalizedEvents = Array.isArray(events)
       ? events.map((item) => ({ ...item, imageUrl: normalizeMediaUrl(item.imageUrl) }))
-      : events;
+      : [];
 
     return { ...response.data, data: normalizedEvents };
   },

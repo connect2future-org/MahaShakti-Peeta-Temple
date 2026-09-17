@@ -86,7 +86,7 @@ export default function HeroSlider() {
           </Link>
           <Link
             href="/donate"
-            className="inline-flex min-h-[44px] items-center justify-center border-2 border-white px-6 py-3 text-base font-bold text-white transition-colors duration-300 hover:bg-white hover:text-[#083C78] sm:px-8"
+            className="inline-flex min-h-[44px] items-center justify-center border-2 border-white px-6 py-3 text-base font-bold text-white sm:px-8"
           >
             {content.donate}
           </Link>
