@@ -5,7 +5,7 @@ const { createDonationRecord, listDonationRecords } = require("../utils/storage"
 
 const submitDonation = asyncHandler(async (req, res) => {
   const { name, phone, email, amount, purpose, utrNumber, paymentStatus } = req.body;
-  if (!name || !phone || !email || !amount || !purpose || !utrNumber) {
+  if (!name || !phone || !email || !amount || !purpose || !utrNumber || !/^\d{12}$/.test(String(utrNumber).trim())) {
     return res.status(400).json({ success: false, message: "All donation fields are required" });
   }
 

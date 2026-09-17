@@ -23,7 +23,7 @@ export default function DonateQr() {
   const [statusMessage, setStatusMessage] = useState<string | null>(null);
   const [statusType, setStatusType] = useState<"success" | "error" | null>(null);
   const normalizedUtrNumber = utrNumber.trim();
-  const isUtrNumberValid = normalizedUtrNumber !== "" && /^\d+$/.test(normalizedUtrNumber);
+  const isUtrNumberValid = /^\d{12}$/.test(normalizedUtrNumber);
 
   useEffect(() => {
     const savedData = window.localStorage.getItem(DONATION_STORAGE_KEY);
@@ -171,6 +171,7 @@ export default function DonateQr() {
                   id="utrNumber"
                   name="utrNumber"
                   type="text"
+                  maxLength={12}
                   value={utrNumber}
                   onChange={(event) => {
                     const nextValue = event.target.value;
